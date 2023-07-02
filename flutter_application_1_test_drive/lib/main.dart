@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 58, 66, 183)),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demoooooooooooo Home Page'),
+      home: const MyHomePage(title: 'Flutter Demoooo Home Page'),
     );
   }
 }
@@ -106,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text(
-              'You have CRUSHED the button this many times:',
+              'You have CRUSHEDy the button this many times:',
             ),
             Text(
               '$_counter',
