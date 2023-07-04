@@ -13,10 +13,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        backgroundColor: Color.fromARGB(255, 32, 173, 238),
+        backgroundColor: Color.fromARGB(255, 44, 135, 94),
         body: SafeArea(
           child: Center(
             child:  Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 CircleAvatar(
                   radius: 50.0,
@@ -35,11 +36,19 @@ class MyApp extends StatelessWidget {
                   fontFamily: 'PT-Sans',
                 ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(10),
+                SizedBox(
+                  height: 20,
+                  width: 150,
+                  child: Divider(
+                    color: Colors.amberAccent,
+                  ),
+                ),
+                Card(
                   color: Colors.white70,
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: Row(
+                  child: Padding(
+                    padding: EdgeInsets.all(25),
+                    child: Row(
                     children: [
                       Icon(Icons.phone,
                       size: 35,
@@ -48,21 +57,22 @@ class MyApp extends StatelessWidget {
                       SizedBox(width: 25,),
                       Text('+351 351 351 351'),
                     ],
+                    ),
                   ),
                 ),
-                Container(
-                  padding: EdgeInsets.all(10),
+                Card( 
                   color: Colors.white70,
                   margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
-                  child: Row(
-                    children: [
-                      Icon(Icons.email,
+                  child: Padding(
+                    padding: EdgeInsets.all(25),
+                    child: ListTile( //This one has ListTile and the other is by hand 
+                      leading: Icon(Icons.email,
                       size: 35,
                       color: Colors.black54
                       ),
-                      SizedBox(width: 25,),
-                      Text('lion at yahoo dot com '),
-                    ],
+                      title: Text('lion at yahoo dot com '
+                      ),
+                    ),
                   ),
                 )
               ],
@@ -74,4 +84,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
