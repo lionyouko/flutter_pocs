@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'package:timezone/data/latest.dart' as tz;
+
+import 'local_notice_service.dart';
+
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  NotificationService().initNotification();
+  tz.initializeTimeZones();
+
   runApp(const MyApp());
 }
 
@@ -13,8 +21,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Notification PoC',
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 58, 116, 183)),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 197, 234, 214)),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Notification PoC Home Page'),
@@ -60,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SwitchesGroup(onSwitchStateChange: this._listenSwitchStateChanges),
+          SwitchesGroup(onSwitchStateChange: _listenSwitchStateChanges),
           const SizedBox(
             width: 100,
             height: 50,
@@ -135,7 +143,15 @@ class _MyHomePageState extends State<MyHomePage> {
         }
         break;
       case 'LOCALPUSH':
-        {}
+        DateTime scheduleTime = DateTime.now().add(const Duration(seconds: 5));
+        {
+          debugPrint('Notification Scheduled for $scheduleTime');
+
+          NotificationService().scheduleNotification(
+              title: 'Flossing Reminder',
+              body: 'Hey! Let\'s make these guns healthy!',
+              scheduledNotificationDateTime: scheduleTime);
+        }
     }
   }
 }
