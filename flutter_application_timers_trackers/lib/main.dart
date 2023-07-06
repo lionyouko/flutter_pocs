@@ -45,14 +45,14 @@ class _MyHomePageWithDayState extends State<MyHomePageWithDay> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              Text('Days'),
+              const Text('Days'),
               Row(
                 children: [
                   DayButton(dt: DateTime.now()),
                   const SizedBox(
                     width: 10,
                   ),
-                  DayButton(dt: DateTime.now().add(const Duration(days: 1)))
+                  DayButton(dt: DateTime.now().add(const Duration(days: 1))),
                 ],
               ),
             ],
