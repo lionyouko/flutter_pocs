@@ -27,9 +27,10 @@ class _DayButtonState extends State<DayButton> {
             minimumSize: Size(50, 80),
             backgroundColor: _timesBrushedCorrespondingColor[_timesBrushed]),
         onPressed: () async {
-          _timesBrushed = await Navigator.push(context,
+          int result = await Navigator.push(context,
               MaterialPageRoute(builder: (context) => const DayDetailScreen()));
-          setState(() => _timesBrushed);
+          setState(() =>
+              _timesBrushed > result ? _timesBrushed : _timesBrushed = result);
         },
         child: Text(widget.dt.day.toString()));
   }
