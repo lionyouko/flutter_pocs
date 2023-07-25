@@ -17,7 +17,7 @@ void main() {
 }
 
 // Mutable
-/**
+/*
  * Stateful Widgets are mutable.
  * They need to override a method called createState that is triggered once the widget is inflated and inserted in Widgets tree.
  * 
@@ -32,8 +32,8 @@ void main() {
  * It does change, however, it may not appear in the screen. For that, we need to mark the things that changed in some way and that way is by the use of setState() method. 
  * 
  * When setState is called, all inside of it will be set as "dirty" when when a reload is done. Then, the build method will have a elements market as dirty, meaning they must be updated to the most recent value. Then it does that on rebuild.
- * 
  */
+
 class DicePage extends StatefulWidget {
   const DicePage({Key? key}) : super(key: key);
 
@@ -46,7 +46,7 @@ class _DicePageState extends State<DicePage> {
   int _leftDiceNumber = 1;
   int _rightDiceNumber = 2;
 
-  // You exteds, so you can add whatever you need, just as normal
+  // You extends, so you can add whatever you need, just as normal
   int _generateNewNumberForDice() {
     return Random().nextInt(6) + 1;
   }

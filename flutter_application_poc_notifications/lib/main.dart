@@ -150,7 +150,9 @@ class _MyHomePageState extends State<MyHomePage> {
           NotificationService().scheduleNotification(
               title: 'Flossing Reminder',
               body: 'Hey! Let\'s make these guns healthy!',
-              scheduledNotificationDateTime: scheduleTime);
+              payLoad: 'BOOOOM',
+              scheduledNotificationDateTime: scheduleTime,
+              );
         }
     }
   }
@@ -166,7 +168,7 @@ class SwitchesGroup extends StatefulWidget {
 }
 
 class _SwitchesGroupState extends State<SwitchesGroup> {
-  Map<String, bool> _switchesStateMap = {
+  final Map<String, bool> _switchesStateMap = {
     'DIALOG': false,
     'TOAST': false,
     'LOCALPUSH': false
