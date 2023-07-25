@@ -1,6 +1,9 @@
 # flutter_application_poc_notifications
 
-A new Flutter project.
+PoC 1:
+In the Flutter Notification PoC, a notification is created for every time a multiple of 5 is counted. This notification appears in three different styles: in-app toasts, in-app alert dialogs, and system-wide push notification 5 seconds after hitting a multiple of 5 (as for example, in case the app notifies the user even if not currently running).
+
+This PoC does not use Flutter architecture pattern libs.
 
 ## Getting Started
 
