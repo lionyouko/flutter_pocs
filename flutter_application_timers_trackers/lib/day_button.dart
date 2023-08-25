@@ -24,7 +24,7 @@ class _DayButtonState extends State<DayButton> {
   Widget build(BuildContext context) {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
-            minimumSize: Size(50, 80),
+            minimumSize: const Size(50, 80),
             backgroundColor: _timesBrushedCorrespondingColor[_timesBrushed]),
         onPressed: () async {
           int result = await Navigator.push(context,

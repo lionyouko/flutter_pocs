@@ -21,7 +21,7 @@ void main() {
  * Stateful Widgets are mutable.
  * They need to override a method called createState that is triggered once the widget is inflated and inserted in Widgets tree.
  * 
- * that Method os of type State<OurWidgetClass> and it will evoke the creation of a class
+ * that Method is of type State<OurWidgetClass> and it will evoke the creation of a class
  * that we need to implement (OurWidgetClass) and its parent is State<OurWidgetClass>.
  * 
  * Inside State<OurWidgetClass> we can set variables.

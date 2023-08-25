@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    const MainApp(),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -12,12 +14,13 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Educational Resource PoC'),
-          backgroundColor: Colors.amberAccent,
+          title: const Center(child: Text('Educational Resource PoC')),
+          backgroundColor: Colors.amber,
         ),
         body: const Center(
           child: Text('Educational Hints Everyday!'),
         ),
+        backgroundColor: const Color.fromARGB(255, 241, 230, 227),
       ),
     );
   }
