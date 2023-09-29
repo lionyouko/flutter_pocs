@@ -3,6 +3,7 @@ import 'package:bmi_calculator/reusable_card.dart';
 import 'package:bmi_calculator/icon_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/constants.dart';
+import 'package:bmi_calculator/round_icon_button.dart';
 
 // in future may be a good idea to have a "design" file in which all the properties can be get and filled to the objects themselves. A pseudo extract, like extracting strings in android
 
@@ -137,21 +138,13 @@ class _InputPageState extends State<InputPage> {
                           children: [
                             //the problem here is that floating action button should be use very specifically and only one per screen.
                             //We will need to make a buttom ourselves.
-                            FloatingActionButton(
-                                backgroundColor: Color(0XFF4C4F5E),
-                                child: Icon(
-                                  FontAwesomeIcons.plus,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {}),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                            ),
                             SizedBox(width: 10.0),
-                            FloatingActionButton(
-                                backgroundColor: Color(0XFF4C4F5E),
-                                child: Icon(
-                                  FontAwesomeIcons.minus,
-                                  color: Colors.white,
-                                ),
-                                onPressed: () {}),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                            ),
                           ],
                         )
                       ],
