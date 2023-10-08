@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
 
-//This widget is basically a composition of others, but more than that, it is also more basic customized than just changing properties, or chanaging the theme.
+//This widget is basically a composition of others, but more than that, it is also more basic customized than just changing properties, or changing the theme.
 class RoundIconButton extends StatelessWidget {
   final IconData? icon;
+  final void Function()? onTap;
 
-  const RoundIconButton({this.icon});
+  const RoundIconButton({
+    required this.icon,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: () {},
+      onPressed: this.onTap,
       child: Icon(icon),
       shape: CircleBorder(),
       fillColor: Color(0XFF4C4F5E),

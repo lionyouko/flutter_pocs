@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:bmi_calculator/reusable_card.dart';
-import 'package:bmi_calculator/icon_content.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/constants.dart';
-import 'package:bmi_calculator/round_icon_button.dart';
+import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/pages/result_page.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/bmi_calculator.dart';
 
 // in future may be a good idea to have a "design" file in which all the properties can be get and filled to the objects themselves. A pseudo extract, like extracting strings in android
 
@@ -140,10 +143,26 @@ class _InputPageState extends State<InputPage> {
                             //We will need to make a buttom ourselves.
                             RoundIconButton(
                               icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(
+                                  () {
+                                    weight--;
+                                    weight =
+                                        weight < minWeight ? minWeight : weight;
+                                  },
+                                );
+                              },
                             ),
                             SizedBox(width: 10.0),
                             RoundIconButton(
                               icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  weight++;
+                                  weight =
+                                      weight > maxWeight ? maxWeight : weight;
+                                });
+                              },
                             ),
                           ],
                         )
@@ -160,6 +179,38 @@ class _InputPageState extends State<InputPage> {
                         Text(
                           "AGE",
                           style: labelStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: labelStyleForNumbers,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            //the problem here is that floating action button should be use very specifically and only one per screen.
+                            //We will need to make a buttom ourselves.
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onTap: () {
+                                setState(
+                                  () {
+                                    age--;
+                                    age = age < minAge ? minAge : age;
+                                  },
+                                );
+                              },
+                            ),
+                            SizedBox(width: 10.0),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onTap: () {
+                                setState(() {
+                                  age++;
+                                  age = age > maxAge ? maxAge : age;
+                                });
+                              },
+                            ),
+                          ],
                         )
                       ],
                     ),
@@ -168,12 +219,17 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: bottonContainerBackgroundColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: bottonContainerHeight,
-          )
+          BottomButton(
+            onTap: () {
+              BMICalculator mbiCalc =
+                  BMICalculator(height: height, weight: weight);
+
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ResultPage(mbiCalc);
+              }));
+            },
+            buttonTitle: 'CALCULATE',
+          ),
         ],
       ),
     );
