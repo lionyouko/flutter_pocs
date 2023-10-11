@@ -5,9 +5,10 @@ void main() {
 }
 
 void performTasks() {
+  //with this setup, task3 will use not loaded instead because nothing is making it to wait for the data.
   task1();
-  task2();
-  task3();
+
+  task3(task2());
 }
 
 void task1() {
@@ -15,16 +16,14 @@ void task1() {
   print('Task 1 complete');
 }
 
-void task2() {
+String task2() {
   Duration threeSeconds = Duration(seconds: 3);
-  String result;
+  String result = 'not loaded';
   Future.delayed(threeSeconds, () {
     String result = 'task 2 data';
     print('Task 2 complete');
   });
-  // sleep(threeSeconds);
-  String result = 'task 2_2 data';
-  print('Task 2_2 complete');
+  return result;
 }
 
 void task3(String task2Data) {
