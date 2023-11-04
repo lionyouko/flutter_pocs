@@ -19,6 +19,25 @@ const kConditionTextStyle = TextStyle(
   fontSize: 100.0,
 );
 
-const String kApiKey = 'fda3365148dd07a9819807d6a17af2a6';
+const kTextInputDecorationTextField = InputDecoration(
+  filled: true,
+  fillColor: Colors.white,
+  icon: Icon(
+    Icons.location_city,
+    color: Colors.white,
+  ),
+  hintText: 'Enter city s name',
+  hintStyle: TextStyle(
+    color: Colors.grey,
+  ),
+  border: OutlineInputBorder(
+    borderRadius: BorderRadius.all(
+      Radius.circular(10.0),
+    ),
+    borderSide: BorderSide.none,
+  ),
+);
 
-const String kWeatherUrl = 'http://api.openweathermap.org/data/2.5/weather?';
+const String kApiKey = '4862a79f84cc5480eb4c5299b3731900';
+
+const String kWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?';
