@@ -1,6 +1,7 @@
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static const String id = 'welcome_screen';
@@ -70,7 +71,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       //P8b1: tween animations. We use the animation value, if we define an animation and put controller as a parent.
-      backgroundColor: colorAnimationTween?.value,
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -90,16 +91,22 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     height: animation!.value * 100,
                   ),
                 ),
-                Text(
+                //C176: this is an example of pakaged for animations in flutter: animated_text_kit
+                AnimatedTextKit(
                   //P6b2: With value 100, this looks like it is loading from 0 to 100
                   //P6d4: since we going 0 to 1, we need to multiply by 100. Also, we can force with !
                   //P8b3: tween animations. We use the animation value, if we define an animation and put controller as a parent.
-                  'Flash Chat ${(animation!.value * 100).toStringAsFixed(0) ?? ''}%',
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.black54,
-                  ),
+                  repeatForever: true,
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Flash Chat',
+                      textStyle: TextStyle(
+                        fontSize: 25.0,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.black54,
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
