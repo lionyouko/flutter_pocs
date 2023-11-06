@@ -8,11 +8,35 @@ class WelcomeScreen extends StatefulWidget {
   _WelcomeScreenState createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> {
+//C174: making custom animation
+// P2: with keyword is extending our class to act as single ticker provider needed as vsync
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
+  //P1: create animation controller
+  AnimationController? controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      //P3: vsync receives ticker, in this case the own class
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+
+    //P5: add a listener just to see things changing as said in P4
+    controller?.addListener(() {
+      setState(() {});
+      print(controller?.value);
+    });
+    //P4: making animation going forward by 0.01 to 0.01 from 0 to 1
+    controller?.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.white.withOpacity(controller?.value ?? 0.0),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
