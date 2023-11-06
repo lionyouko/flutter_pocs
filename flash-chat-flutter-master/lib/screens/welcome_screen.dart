@@ -14,18 +14,26 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     with SingleTickerProviderStateMixin {
   //P1: create animation controller
   AnimationController? controller;
+  Animation? animation;
 
   @override
   void initState() {
     super.initState();
+
     controller = AnimationController(
       //P3: vsync receives ticker, in this case the own class
       vsync: this,
       duration: Duration(seconds: 1),
       //P6b1: adding a upper bound with different value is possible. Instead of 1, this is 100
 
-      upperBound: 100.0,
+      //P6d1: to use animation curves different than standard, must be 1.0 the upperbound.
+      upperBound: 1.0,
     );
+
+    //P6d2: to use animation curves different than standard, must be 1.0 the upperbound.
+    //parent must be not null, so, by this point, we can enforce with !
+    animation =
+        CurvedAnimation(parent: controller!.view, curve: Curves.decelerate);
 
     //P5: add a listener just to see things changing as said in P4
     controller?.addListener(() {
@@ -54,12 +62,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   child: Container(
                     child: Image.asset('images/logo.png'),
                     //P6c: With value 100, this looks like it is growing from 0 to 100
-                    height: controller?.value,
+                    //P6d3: since we going 0 to 1, we need to multiply by 100. Also, we can force with !
+
+                    height: controller!.value * 100,
                   ),
                 ),
                 Text(
                   //P6b2: With value 100, this looks like it is loading from 0 to 100
-                  'Flash Chat ${controller?.value.toInt() ?? ''}%',
+                  //P6d4: since we going 0 to 1, we need to multiply by 100. Also, we can force with !
+                  'Flash Chat ${(controller!.value * 100).toStringAsFixed(0) ?? ''}%',
                   style: TextStyle(
                     fontSize: 25.0,
                     fontWeight: FontWeight.w900,
