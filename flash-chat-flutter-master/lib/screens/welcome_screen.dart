@@ -53,14 +53,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   tag: 'logo',
                   child: Container(
                     child: Image.asset('images/logo.png'),
-                    height: 60.0,
+                    //P6c: With value 100, this looks like it is growing from 0 to 100
+                    height: controller?.value,
                   ),
                 ),
                 Text(
                   //P6b2: With value 100, this looks like it is loading from 0 to 100
                   'Flash Chat ${controller?.value.toInt() ?? ''}%',
                   style: TextStyle(
-                    fontSize: 35.0,
+                    fontSize: 25.0,
                     fontWeight: FontWeight.w900,
                     color: Colors.black54,
                   ),
