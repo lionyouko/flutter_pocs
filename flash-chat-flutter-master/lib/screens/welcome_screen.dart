@@ -16,6 +16,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   AnimationController? controller;
   Animation? animation;
 
+  //P8a: tween animations. In this case color tween.
+  Animation? colorAnimationTween;
+
   @override
   void initState() {
     super.initState();
@@ -32,8 +35,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
 
     //P6d2: to use animation curves different than standard, must be 1.0 the upperbound.
     //parent must be not null, so, by this point, we can enforce with !
-    animation =
-        CurvedAnimation(parent: controller!.view, curve: Curves.decelerate);
+    animation = CurvedAnimation(parent: controller!.view, curve: Curves.easeIn);
+    colorAnimationTween = ColorTween(begin: Colors.black, end: Colors.white)
+        .animate(controller!.view);
 
     //P5: add a listener just to see things changing as said in P4
     controller?.addListener(() {
@@ -42,12 +46,31 @@ class _WelcomeScreenState extends State<WelcomeScreen>
     });
     //P4: making animation going forward by 0.01 to 0.01 from 0 to 1
     controller?.forward();
+
+    //P7a: if we want to check the status of the animation, it has many, and change something,
+    // as, for example, animation going forward and backward, we can as below.
+    animation?.addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        controller?.reverse(from: 1.0);
+      } else if (status == AnimationStatus.dismissed) {
+        controller?.forward();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    //P7b: we dont want the animation to run even if the screen is not there, because it will.
+    // so we dispose the controller and all stop it from staying in memory
+    super.dispose();
+    controller?.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      //P8b1: tween animations. We use the animation value, if we define an animation and put controller as a parent.
+      backgroundColor: colorAnimationTween?.value,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -63,14 +86,15 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     child: Image.asset('images/logo.png'),
                     //P6c: With value 100, this looks like it is growing from 0 to 100
                     //P6d3: since we going 0 to 1, we need to multiply by 100. Also, we can force with !
-
-                    height: controller!.value * 100,
+                    //P8b2: tween animations. We use the animation value, if we define an animation and put controller as a parent.
+                    height: animation!.value * 100,
                   ),
                 ),
                 Text(
                   //P6b2: With value 100, this looks like it is loading from 0 to 100
                   //P6d4: since we going 0 to 1, we need to multiply by 100. Also, we can force with !
-                  'Flash Chat ${(controller!.value * 100).toStringAsFixed(0) ?? ''}%',
+                  //P8b3: tween animations. We use the animation value, if we define an animation and put controller as a parent.
+                  'Flash Chat ${(animation!.value * 100).toStringAsFixed(0) ?? ''}%',
                   style: TextStyle(
                     fontSize: 25.0,
                     fontWeight: FontWeight.w900,
