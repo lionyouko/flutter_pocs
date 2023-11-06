@@ -22,6 +22,9 @@ class _WelcomeScreenState extends State<WelcomeScreen>
       //P3: vsync receives ticker, in this case the own class
       vsync: this,
       duration: Duration(seconds: 1),
+      //P6b1: adding a upper bound with different value is possible. Instead of 1, this is 100
+
+      upperBound: 100.0,
     );
 
     //P5: add a listener just to see things changing as said in P4
@@ -36,7 +39,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(controller?.value ?? 0.0),
+      backgroundColor: Colors.white,
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
@@ -54,9 +57,10 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   ),
                 ),
                 Text(
-                  'Flash Chat',
+                  //P6b2: With value 100, this looks like it is loading from 0 to 100
+                  'Flash Chat ${controller?.value.toInt() ?? ''}%',
                   style: TextStyle(
-                    fontSize: 45.0,
+                    fontSize: 35.0,
                     fontWeight: FontWeight.w900,
                     color: Colors.black54,
                   ),
