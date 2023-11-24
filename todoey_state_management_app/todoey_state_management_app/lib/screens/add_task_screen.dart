@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_state_management_app/models/task.dart';
+import 'package:todoey_state_management_app/models/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  final Function addTaskCallBack;
-
-  const AddTaskScreen(this.addTaskCallBack);
+  const AddTaskScreen();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +38,10 @@ class AddTaskScreen extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              addTaskCallBack(newTaskTitle ?? '');
+              final task = Task(newTaskTitle!);
+              //this one does not need to listen the change caused by itself as it is just a function
+              Provider.of<TaskData>(context, listen: false).addTask(task);
+              Navigator.pop(context);
             },
           )
         ],

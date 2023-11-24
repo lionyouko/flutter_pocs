@@ -26,10 +26,3 @@ class TaskTile extends StatelessWidget {
     );
   }
 }
-
-//1 callback is defined here
-  // void checkboxCallback(bool? currentCheckBoxState) {
-  //   setState(() {
-  //     isChecked = currentCheckBoxState ?? false;
-  //   });
-  // }
