@@ -22,6 +22,9 @@ class TaskList extends StatelessWidget {
                 //we will maintain the callback in this one even with provider
                 taskData.updateTask(task);
               },
+              () {
+                taskData.deleteTask(index);
+              },
             );
           },
           itemCount: taskData.taskCount,
