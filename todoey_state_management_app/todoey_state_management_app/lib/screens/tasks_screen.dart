@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoey_state_management_app/models/task_data.dart';
+import 'package:todoey_state_management_app/service/theme_service.dart';
 import 'package:todoey_state_management_app/widgets/task_list.dart';
 import 'package:todoey_state_management_app/screens/add_task_screen.dart';
 
@@ -37,12 +38,18 @@ class TasksScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Icon(
-                        size: 30,
-                        color: Colors.lightBlueAccent,
-                        Icons.list,
+                    GestureDetector(
+                      onDoubleTap: () {
+                        Provider.of<ThemeService>(context, listen: false)
+                            .toggleTheme();
+                      },
+                      child: const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Icon(
+                          size: 30,
+                          color: Colors.lightBlueAccent,
+                          Icons.list,
+                        ),
                       ),
                     ),
                     const SizedBox(

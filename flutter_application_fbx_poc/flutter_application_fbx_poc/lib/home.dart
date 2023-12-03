@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
         autoRotate: true,
         disableZoom: true,
         autoPlay: true,
-        animationName: 'KeyAction',
+        //animationName: 'KeyAction',
       ),
     );
   }

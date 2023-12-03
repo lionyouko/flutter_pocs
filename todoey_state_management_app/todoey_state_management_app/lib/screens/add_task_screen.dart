@@ -11,7 +11,7 @@ class AddTaskScreen extends StatelessWidget {
     String? newTaskTitle;
 
     return Container(
-      padding: EdgeInsets.all(20),
+      padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -38,9 +38,12 @@ class AddTaskScreen extends StatelessWidget {
               ),
             ),
             onPressed: () {
-              final task = Task(newTaskTitle!);
-              //this one does not need to listen the change caused by itself as it is just a function
-              Provider.of<TaskData>(context, listen: false).addTask(task);
+              if (!(newTaskTitle == null)) {
+                final task = Task(newTaskTitle!);
+                //this one does not need to listen the change caused by itself as it is just a function
+                Provider.of<TaskData>(context, listen: false).addTask(task);
+              }
+
               Navigator.pop(context);
             },
           )
