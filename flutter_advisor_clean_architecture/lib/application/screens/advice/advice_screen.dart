@@ -57,10 +57,10 @@ class AdviceScreen extends StatelessWidget {
                   builder: (context, state) {
                     if (state is AdvicerCubitInitial) {
                       return Text(
-                        'Your Advice is wating for you!',
+                        'Your Advice is waiting for you!',
                         style: themeData.textTheme.bodyLarge,
                       );
-                    } else if (state is AdviceCubitLoadingSate) {
+                    } else if (state is AdviceCubitLoadingState) {
                       return CircularProgressIndicator(
                         color: themeData.colorScheme.secondary,
                       );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/bloc/advice_bloc_bloc.dart';
+import 'package:flutter_advisor_clean_architecture/application/screens/advice/cubit/advicer_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CustomButton extends StatelessWidget {
@@ -11,9 +12,10 @@ class CustomButton extends StatelessWidget {
     return InkResponse(
         onTap: () {
           // now we gonna emit events for block, but we need to use provider
-          BlocProvider.of<AdviceBloc>(context).add(
-            AdviceRequestedEvent(),
-          );
+          // BlocProvider.of<AdviceBloc>(context).add(
+          //   AdviceRequestedEvent(),
+          // );
+          BlocProvider.of<AdvicerCubit>(context).onAdviceRequested();
         },
         child: Material(
           elevation: 20,

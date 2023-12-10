@@ -12,7 +12,7 @@ final class AdvicerCubitInitial extends AdvicerCubitState {
   List<Object?> get props => [];
 }
 
-final class AdviceCubitLoadingSate extends AdvicerCubitState {
+final class AdviceCubitLoadingState extends AdvicerCubitState {
   @override
   List<Object?> get props => [];
 }
