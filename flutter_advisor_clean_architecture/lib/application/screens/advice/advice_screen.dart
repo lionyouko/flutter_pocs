@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advisor_clean_architecture/application/presentation_services/theme_service.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/bloc/advice_bloc_bloc.dart';
+import 'package:flutter_advisor_clean_architecture/application/screens/advice/cubit/advicer_cubit.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/widgets_advice/advice_field.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/widgets_advice/custom_button.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/widgets_advice/error_message.dart';
@@ -16,7 +17,7 @@ class AdviceScreenWrapperProvider extends StatelessWidget {
     return BlocProvider(
       //this works exactly like provider
       create: (context) {
-        return AdviceBloc();
+        return AdvicerCubit();
       },
       child: const AdviceScreen(),
     );
@@ -52,22 +53,22 @@ class AdviceScreen extends StatelessWidget {
             Expanded(
               child: Center(
                 //this is needed to react to states, we will build on reacting states of chosen block and state
-                child: BlocBuilder<AdviceBloc, AdviceBlocState>(
+                child: BlocBuilder<AdvicerCubit, AdvicerCubitState>(
                   builder: (context, state) {
-                    if (state is AdviceBlocInitialState) {
+                    if (state is AdvicerCubitInitial) {
                       return Text(
                         'Your Advice is wating for you!',
                         style: themeData.textTheme.bodyLarge,
                       );
-                    } else if (state is AdviceBlocLoadingSate) {
+                    } else if (state is AdviceCubitLoadingSate) {
                       return CircularProgressIndicator(
                         color: themeData.colorScheme.secondary,
                       );
-                    } else if (state is AdviceBlocLoadedState) {
+                    } else if (state is AdviceCubitLoadedState) {
                       return AdviceField(
                         advice: state.advice,
                       );
-                    } else if (state is AdviceBlocErrorState) {
+                    } else if (state is AdviceCubitErrorState) {
                       return ErrorMessage(message: state.message);
                     } else {
                       return const SizedBox();
