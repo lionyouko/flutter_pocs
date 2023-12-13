@@ -14,7 +14,10 @@ abstract class AdviceRemoteDatasource {
 }
 
 class AdviceRemoteDataSourceImpl implements AdviceRemoteDatasource {
-  final client = http.Client();
+  final http.Client client;
+
+  // inject from outside
+  AdviceRemoteDataSourceImpl({required this.client});
   @override
   Future<AdviceModelDTO> getRandomAdviceFromAPI() async {
     final response = await client.get(

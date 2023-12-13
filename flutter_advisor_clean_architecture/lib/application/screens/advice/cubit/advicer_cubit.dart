@@ -8,9 +8,9 @@ import 'package:flutter_advisor_clean_architecture/domain/usecases/advice_usecas
 part 'advicer_state.dart';
 
 class AdvicerCubit extends Cubit<AdvicerCubitState> {
-  AdvicerCubit() : super(AdvicerCubitInitial());
+  AdvicerCubit({required this.adviceUseCases}) : super(AdvicerCubitInitial());
 
-  final AdviceUseCases adviceUseCases = AdviceUseCases();
+  final AdviceUseCases adviceUseCases;
   //could also sje other usecases
 
   void onAdviceRequested() async {
