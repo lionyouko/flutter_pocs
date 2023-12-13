@@ -12,25 +12,31 @@ final sl = GetIt.I; // sl = service locator
 Future<void> init() async {
   // register the classes we want to be located
 
-  // application layer
+  // * application layer
   // Factory = every time a new/fresh instance of that class
   // You want fresh state always to call recent one
   sl.registerFactory(() => (AdvicerCubit(
-      adviceUseCases:
-          sl()))); // -> sl will take care of adviceUseCases as it will be registered too
+        adviceUseCases: sl(),
+      ))); // -> sl will take care of adviceUseCases as it will be registered too
 
-  // domain layer
-  sl.registerFactory(() => AdviceUseCases(adviceRepo: sl()));
+  // * domain layer
+  sl.registerFactory(() => AdviceUseCases(
+        adviceRepo: sl(),
+      ));
 
-  // data layer
+  // * data layer
   //inform service locator that it has many implementations
-  sl.registerFactory<AdviceRepository>(
-      () => AdviceRepostoryImpl(adviceRemoteDatasource: sl()));
+  sl.registerFactory<AdviceRepository>(() => AdviceRepositoryImpl(
+        adviceRemoteDatasource: sl(),
+      ));
 
   //inform service locator that it has many implementations
-  sl.registerFactory<AdviceRemoteDatasource>(
-      () => AdviceRemoteDataSourceImpl(client: sl()));
+  sl.registerFactory<AdviceRemoteDatasource>(() => AdviceRemoteDataSourceImpl(
+        client: sl(),
+      ));
 
-  // external
-  sl.registerFactory(() => http.Client());
+  // * external
+  sl.registerFactory(
+    () => http.Client(),
+  );
 }

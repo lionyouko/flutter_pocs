@@ -3,8 +3,15 @@ import 'package:flutter_advisor_clean_architecture/application/presentation_serv
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/advice_screen.dart';
 import 'package:flutter_advisor_clean_architecture/theme.dart';
 import 'package:provider/provider.dart';
+import 'injection.dart' as di;
 
-void main() {
+// But by using di in the project, the collateral is that: main turns into async, we need to use the ensureInitialized and then wait for the di.
+void main() async {
+  // wait the bindings before anything else
+  WidgetsFlutterBinding.ensureInitialized();
+  // wait until all the dependencies is gotten
+  await di.init();
+
   runApp(ChangeNotifierProvider(
     create: (context) => ThemeService(),
     child: const MyApp(),

@@ -5,6 +5,7 @@ import 'package:flutter_advisor_clean_architecture/application/screens/advice/cu
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/widgets_advice/advice_field.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/widgets_advice/custom_button.dart';
 import 'package:flutter_advisor_clean_architecture/application/screens/advice/widgets_advice/error_message.dart';
+import 'package:flutter_advisor_clean_architecture/injection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,7 @@ class AdviceScreenWrapperProvider extends StatelessWidget {
     return BlocProvider(
       //this works exactly like provider
       create: (context) {
-        return AdvicerCubit();
+        return sl<AdvicerCubit>();
       },
       child: const AdviceScreen(),
     );
