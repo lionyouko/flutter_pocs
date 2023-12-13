@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_advisor_clean_architecture/core/constants.dart';
+import 'package:flutter_advisor_clean_architecture/data/exceptions/exception.dart';
 import 'package:flutter_advisor_clean_architecture/data/models/advice_model_dto.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +24,11 @@ class AdviceRemoteDataSourceImpl implements AdviceRemoteDatasource {
       },
     );
     debugPrint(response.statusCode.toString());
-    final responseBody = json.decode(response.body);
-    return AdviceModelDTO.fromJSON(responseBody);
+    if (response.statusCode != 200) {
+      throw ServerException();
+    } else {
+      final responseBody = json.decode(response.body);
+      return AdviceModelDTO.fromJSON(responseBody);
+    }
   }
 }
