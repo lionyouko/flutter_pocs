@@ -25,3 +25,4 @@ We start by giving dependencies in constructor:
     - in advice_usecases (domain) triggers the need in advice_cubit (presentation)
 
 In order to manage injections and injection contaziner, we will use get_it package.
+
